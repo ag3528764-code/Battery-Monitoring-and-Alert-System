@@ -21,13 +21,13 @@ class BatteryAlertApp(ctk.CTk):
         self.geometry("450x450")
         self.resizable(False, False)
         
-        # --- CRITICAL CHANGE: HARDCODED YOUR DEFAULT AUDIO PATH ---
+        
         self.threshold = 8
         self.audio_path = r"D:\my_battery.mp3"  # Default path set to your D: drive file
         self.auto_shutdown_popup = True
         self.is_monitoring = False
         
-        # Load saved data if exists (it will override default if you change it later via GUI)
+        # Load saved data if exists 
         self.load_settings()
         
         # Create GUI Components
@@ -104,7 +104,7 @@ class BatteryAlertApp(ctk.CTk):
                 with open(SETTINGS_FILE, "r") as f:
                     data = json.load(f)
                     self.threshold = data.get("threshold", 8)
-                    # Use saved path, fallback to default D:\ if settings file is fresh/empty
+                    
                     self.audio_path = data.get("audio_path", r"D:\my_battery.mp3")
                     self.auto_shutdown_popup = data.get("auto_shutdown_popup", True)
             except Exception:
